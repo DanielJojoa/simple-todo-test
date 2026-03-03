@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../src/env.php';
-require_once __DIR__ . '/../src/database.php';
+require_once __DIR__ . '/src/env.php';
+require_once __DIR__ . '/src/database.php';
 
-loadEnv(__DIR__ . '/../.env');
+loadEnv(__DIR__ . '/.env');
 
 $errors = [];
 
@@ -110,4 +110,3 @@ function redirectToHome(): void
   </ul>
 </body>
 </html>
-
