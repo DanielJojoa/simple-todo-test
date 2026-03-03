@@ -27,8 +27,11 @@ function loadEnv(string $filePath): void
             continue;
         }
 
-        $_ENV[$key] = $value;
-        putenv("{$key}={$value}");
+        // No sobrescribir variables de entorno existentes (ej: desde Docker)
+        if (!isset($_ENV[$key]) && getenv($key) === false) {
+            $_ENV[$key] = $value;
+            putenv("{$key}={$value}");
+        }
     }
 }
 

@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  php-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: crud_php_app
+    ports:
+      - "8080:80"
+    volumes:
+      - ./public:/var/www/html
+      - ./src:/var/www/src
+      - ./.env:/var/www/.env
+    environment:
+      - APP_ENV=${APP_ENV}
+      - DB_HOST=localpostgres-postgres-1
+      - DB_PORT=5432
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+    networks:
+      - localpostgres_default
+    restart: unless-stopped
+
+networks:
+  localpostgres_default:
+    external: true
